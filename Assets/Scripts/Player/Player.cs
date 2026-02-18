@@ -1,4 +1,4 @@
-using System.Collections;
+using System;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -19,7 +19,16 @@ public class Player : MonoBehaviour
         rb = GetComponent<Rigidbody2D>();
     }
 
-    
+    private void Start()
+    {
+        GameInput.Instance.OnPlayerAttack += Player_OnPlayerAttack;
+    }
+
+    private void Player_OnPlayerAttack(object sender, EventArgs e)
+    {
+        ActiveWeapon.Instance.GetActiveWeapon().Attack();
+    }
+
     private void FixedUpdate()
     {
         HandleMovement();
@@ -28,9 +37,7 @@ public class Player : MonoBehaviour
     private void HandleMovement()
     {
         Vector2 inputVector = GameInput.Instance.GetMovementVector();
-        inputVector = inputVector.normalized;
         rb.MovePosition(rb.position + inputVector * (movingSpeed * Time.fixedDeltaTime));
-
         if (Mathf.Abs(inputVector.x) > minMovementSpeed || Mathf.Abs(inputVector.y) > minMovementSpeed)
             isRunning = true;
         else
