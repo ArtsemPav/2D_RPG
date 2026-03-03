@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 609865172782954570}
   - component: {fileID: 9139139905008719195}
   - component: {fileID: 4289352257125873268}
+  - component: {fileID: 577521123277252810}
   m_Layer: 0
   m_Name: Visual
   m_TagString: Untagged
@@ -107,6 +108,21 @@ Animator:
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorStateOnDisable: 0
   m_WriteDefaultValuesOnDisable: 0
+--- !u!114 &577521123277252810
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1709739024071101742}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b3c0bbc1dcc760549946fe23cd2eccb9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _enemyAI: {fileID: 8215090476973010494}
+  _enemyHp: {fileID: 1136909639770889951}
+  _shadow: {fileID: 4176221522456641457}
 --- !u!1 &3983293255413057932
 GameObject:
   m_ObjectHideFlags: 0
@@ -118,8 +134,10 @@ GameObject:
   - component: {fileID: 2885997649401906745}
   - component: {fileID: 4682239633365356313}
   - component: {fileID: 6002774365269553253}
+  - component: {fileID: 8625247822518928418}
   - component: {fileID: 4114177211743238621}
   - component: {fileID: 8215090476973010494}
+  - component: {fileID: 1136909639770889951}
   m_Layer: 0
   m_Name: Skeleton
   m_TagString: Untagged
@@ -215,6 +233,60 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 0.96183825, y: 2.3547192}
   m_EdgeRadius: 0
+--- !u!60 &8625247822518928418
+PolygonCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3983293255413057932}
+  m_Enabled: 0
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_ForceSendLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_ForceReceiveLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_ContactCaptureLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_CallbackLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_IsTrigger: 0
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0, y: 0}
+  m_SpriteTilingProperty:
+    border: {x: 0, y: 0, z: 0, w: 0}
+    pivot: {x: 0.5, y: 0.33}
+    oldSize: {x: 6.818182, y: 6.818182}
+    newSize: {x: 6.818182, y: 6.818182}
+    adaptiveTilingThreshold: 0.5
+    drawMode: 0
+    adaptiveTiling: 0
+  m_AutoTiling: 0
+  m_Points:
+    m_Paths:
+    - - {x: 0.10569334, y: 0.70896727}
+      - {x: 0.49813843, y: 0.5906198}
+      - {x: 1.2950058, y: 0.43040395}
+      - {x: 2.3372416, y: 0.52521104}
+      - {x: 3.2718883, y: 1.0834665}
+      - {x: 3.2556572, y: 1.7947212}
+      - {x: 2.8176494, y: 2.1623912}
+      - {x: 2.040103, y: 2.3794048}
+      - {x: 1.184763, y: 2.4290671}
+  m_UseDelaunayMesh: 0
 --- !u!195 &4114177211743238621
 NavMeshAgent:
   m_ObjectHideFlags: 0
@@ -249,10 +321,30 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8b2dcb2144b6f9a47bcfb48665228b97, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  roamingDistanceMin: 3
-  roamingDistanceMax: 7
-  roamingTimerMax: 2
-  startingState: 1
+  _roamingDistanceMin: 3
+  _roamingDistanceMax: 7
+  _roamingTimerMax: 2
+  _startingState: 0
+  _isChasingEnemy: 0
+  _chasingDistance: 4
+  ChasingSpeedMultiplier: 2
+  _isAttackingEnemy: 1
+  _attackDistance: 2
+  _attackRate: 2
+--- !u!114 &1136909639770889951
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3983293255413057932}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 829c6d50592f1514cb50a1087c754f35, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _enemySO: {fileID: 11400000, guid: c3eb8ec578ca5964c8e8f5648d2279a9, type: 2}
+  _enemyAI: {fileID: 8215090476973010494}
 --- !u!1 &4176221522456641457
 GameObject:
   m_ObjectHideFlags: 0

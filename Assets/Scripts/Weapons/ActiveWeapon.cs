@@ -12,8 +12,20 @@ public class ActiveWeapon : MonoBehaviour
         DontDestroyOnLoad(this); 
     }
 
+    private void Update() {
+        followMousePosition();
+    }
+
     public Sword GetActiveWeapon()
     {
         return sword;
+    }
+    private void followMousePosition() {
+        Vector3 playerPos = Player.Instance.GetPlayerScreenPosition();
+        Vector3 mousePos = GameInput.Instance.GetMousePosition();
+        if (mousePos.x < playerPos.x)
+            transform.rotation = Quaternion.Euler(0, 180, 0);
+        else
+            transform.rotation = Quaternion.Euler(0, 0, 0);
     }
 }
