@@ -9,11 +9,11 @@ public class ActiveWeapon : MonoBehaviour
     private void Awake()
     {
         Instance = this;
-        DontDestroyOnLoad(this); 
     }
 
     private void Update() {
-        followMousePosition();
+        if (Player.Instance.IsAlive())
+            followMousePosition();
     }
 
     public Sword GetActiveWeapon()

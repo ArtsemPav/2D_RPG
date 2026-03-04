@@ -8,12 +8,14 @@ public class EnemyHp : MonoBehaviour {
     private int _currentHealh;
 
     private PolygonCollider2D _polygonCollider2D;
+    private BoxCollider2D _boxCollider2D;
 
     public event EventHandler OnTakeHit;
     public event EventHandler OnDeath;
 
     private void Awake() {
         _polygonCollider2D = GetComponent<PolygonCollider2D>();
+        _boxCollider2D = GetComponent<BoxCollider2D>();
     }
 
     private void Start() {
@@ -21,8 +23,10 @@ public class EnemyHp : MonoBehaviour {
         _polygonCollider2D.enabled = false;
     }
 
-    private void OnTriggerEnter2D(Collider2D collision) {
-        Debug.Log("Attack");
+    private void OnTriggerStay2D(Collider2D collision) {
+        if (collision.transform.TryGetComponent(out Player player)) {
+            player.TakeDamage(transform, _enemySO.EnemyDamageAmount);
+        }
     }
 
     public void TakeDamage(int damage) {
@@ -42,6 +46,7 @@ public class EnemyHp : MonoBehaviour {
     private void DetectDeath() {
         if (_currentHealh <= 0) {
             _enemyAI.SetDeathState();
+            _boxCollider2D.enabled = false;
             OnDeath?.Invoke(this, EventArgs.Empty);
         }
     }

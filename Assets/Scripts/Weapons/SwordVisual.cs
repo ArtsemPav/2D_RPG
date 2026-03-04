@@ -25,4 +25,8 @@ public class SwordVisual : MonoBehaviour
     public void TriggerEndAnimation() {
         sword.AttackColliderTurnOff();
     }
+
+    private void OnDestroy() {
+        sword.OnSwordSwing -= Sword_OnSwordSwing;
+    }
 }

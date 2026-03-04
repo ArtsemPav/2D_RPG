@@ -296,8 +296,9 @@ GameObject:
   - component: {fileID: 283589649}
   - component: {fileID: 283589651}
   - component: {fileID: 283589652}
-  - component: {fileID: 283589650}
   - component: {fileID: 283589653}
+  - component: {fileID: 283589650}
+  - component: {fileID: 283589654}
   m_Layer: 0
   m_Name: Player
   m_TagString: Untagged
@@ -334,7 +335,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d8c7fae1787fd244d8349182ce7dca07, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  movingSpeed: 5
+  _movingSpeed: 5
+  _maxHealth: 4
+  _damageRecoveryTime: 0.5
 --- !u!50 &283589651
 Rigidbody2D:
   serializedVersion: 4
@@ -442,6 +445,20 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 0.80689526, y: 1.7034509}
   m_EdgeRadius: 0
+--- !u!114 &283589654
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 283589647}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c6d67b86c62b8234cbe1c178c92496eb, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _knockBackForce: 2
+  _knockBackMovingTimerMax: 0.3
 --- !u!4 &326654920 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 2302951647116417571, guid: 2a5dbaea15341594f9cf0d8f699320a4, type: 3}
@@ -875,6 +892,7 @@ GameObject:
   - component: {fileID: 726014666}
   - component: {fileID: 726014667}
   - component: {fileID: 726014668}
+  - component: {fileID: 726014669}
   m_Layer: 0
   m_Name: PlayerVisual
   m_TagString: Untagged
@@ -982,6 +1000,21 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 00fbbf3ddf2b10646bfe31087c13db94, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &726014669
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 726014664}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b786c8ac425d28a4daacc848df1cb82f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _damagableObject: {fileID: 283589650}
+  _blinkMaterial: {fileID: 2100000, guid: ea7e212edbb09884c9f787d6eb58af34, type: 2}
+  _blinkDuration: 0.1
 --- !u!4 &890099829 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 2600000144399216527, guid: fb6d323cb68621c479e43ac6248700a8, type: 3}
@@ -1116,8 +1149,9 @@ GameObject:
   - component: {fileID: 1591429619}
   - component: {fileID: 1591429618}
   - component: {fileID: 1591429617}
+  - component: {fileID: 1591429620}
   m_Layer: 0
-  m_Name: NavMeshSurface
+  m_Name: NavMeshSurfaceManagment
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1185,6 +1219,18 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1591429620
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1591429616}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9e73c9cb6e34217498cd321eebcace10, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1759225472
 GameObject:
   m_ObjectHideFlags: 0
@@ -1582,12 +1628,12 @@ PrefabInstance:
       value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 8215090476973010494, guid: ccf6159eacdd8a046b69164e51a17537, type: 3}
-      propertyPath: _attackDistance
-      value: 3
-      objectReference: {fileID: 0}
-    - target: {fileID: 8215090476973010494, guid: ccf6159eacdd8a046b69164e51a17537, type: 3}
       propertyPath: _isChasingEnemy
       value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8215090476973010494, guid: ccf6159eacdd8a046b69164e51a17537, type: 3}
+      propertyPath: _chasingDistance
+      value: 5
       objectReference: {fileID: 0}
     - target: {fileID: 8215090476973010494, guid: ccf6159eacdd8a046b69164e51a17537, type: 3}
       propertyPath: _isAttackingEnemy

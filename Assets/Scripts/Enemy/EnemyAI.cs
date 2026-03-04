@@ -80,6 +80,7 @@ public class EnemyAI : MonoBehaviour
                 ChecktCurrentState();
                 break;
             case State.Death:
+                _navMeshAgent.ResetPath();
                 break;
         }
     }
@@ -94,7 +95,10 @@ public class EnemyAI : MonoBehaviour
         }
         if (_isAttackingEnemy) {
             if (distanceToPlayer <= _attackDistance) {
-                newState = State.Attacking;
+                if (Player.Instance.IsAlive())
+                    newState = State.Attacking;
+                else
+                    newState = State.Idle;
             }
         }
 
