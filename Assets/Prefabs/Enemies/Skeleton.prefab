@@ -123,7 +123,6 @@ MonoBehaviour:
   enemyAI: {fileID: 8215090476973010494}
   enemyHp: {fileID: 1136909639770889951}
   shadow: {fileID: 4176221522456641457}
-  deathVFX: {fileID: 4906249270425781430, guid: 3192d6a4e22d8a342b577e916fc7fab3, type: 3}
 --- !u!1 &3983293255413057932
 GameObject:
   m_ObjectHideFlags: 0
@@ -133,6 +132,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 2885997649401906745}
+  - component: {fileID: 9210950632847329756}
   - component: {fileID: 4682239633365356313}
   - component: {fileID: 6002774365269553253}
   - component: {fileID: 8625247822518928418}
@@ -162,6 +162,41 @@ Transform:
   - {fileID: 609865172782954570}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!70 &9210950632847329756
+CapsuleCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3983293255413057932}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_ForceSendLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_ForceReceiveLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_ContactCaptureLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_CallbackLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_IsTrigger: 0
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0.12, y: 0.07}
+  m_Size: {x: 1.12, y: 0.23657766}
+  m_Direction: 1
 --- !u!50 &4682239633365356313
 Rigidbody2D:
   serializedVersion: 4
