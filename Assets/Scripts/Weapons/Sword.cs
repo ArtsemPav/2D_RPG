@@ -3,7 +3,7 @@ using UnityEngine;
 
 public class Sword : MonoBehaviour
 {
-    [SerializeField] private int _swordDamage = 2;
+    [SerializeField] private int swordDamage = 2;
     public event EventHandler OnSwordSwing;
     private PolygonCollider2D _polygonCollider2D;
 
@@ -30,7 +30,7 @@ public class Sword : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D collision) {
         if (collision.transform.TryGetComponent(out EnemyHp enemyhp)){
-            enemyhp.TakeDamage(_swordDamage);
+            enemyhp.TakeDamage(swordDamage);
         }
     }
 

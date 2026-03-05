@@ -3,8 +3,8 @@ using UnityEngine;
 
 [RequireComponent(typeof(PolygonCollider2D))]
 public class EnemyHp : MonoBehaviour {
-    [SerializeField] private EnemySO _enemySO;
-    [SerializeField] private EnemyAI _enemyAI;
+    [SerializeField] private EnemySO enemySO;
+    [SerializeField] private EnemyAI enemyAI;
     private int _currentHealh;
 
     private PolygonCollider2D _polygonCollider2D;
@@ -19,13 +19,13 @@ public class EnemyHp : MonoBehaviour {
     }
 
     private void Start() {
-        _currentHealh = _enemySO.EnemyHealth;
+        _currentHealh = enemySO.EnemyHealth;
         _polygonCollider2D.enabled = false;
     }
 
     private void OnTriggerStay2D(Collider2D collision) {
         if (collision.transform.TryGetComponent(out Player player)) {
-            player.TakeDamage(transform, _enemySO.EnemyDamageAmount);
+            player.TakeDamage(transform, enemySO.EnemyDamageAmount);
         }
     }
 
@@ -45,7 +45,7 @@ public class EnemyHp : MonoBehaviour {
 
     private void DetectDeath() {
         if (_currentHealh <= 0) {
-            _enemyAI.SetDeathState();
+            enemyAI.SetDeathState();
             _boxCollider2D.enabled = false;
             OnDeath?.Invoke(this, EventArgs.Empty);
         }

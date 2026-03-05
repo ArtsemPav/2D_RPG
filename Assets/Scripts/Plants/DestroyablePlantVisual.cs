@@ -4,11 +4,11 @@ using UnityEngine;
 
 public class NewBehaviourScript : MonoBehaviour
 {
-    [SerializeField] private DestroyablePlant _destroyablePlant;
-    [SerializeField] private GameObject _deathVFX;
+    [SerializeField] private DestroyablePlant destroyablePlant;
+    [SerializeField] private GameObject deathVFX;
 
     private void Start() {
-        _destroyablePlant.OnDestroyableTakeDamage += DestroyablePlant_OnDestroyableTakeDamage;
+        destroyablePlant.OnDestroyableTakeDamage += DestroyablePlant_OnDestroyableTakeDamage;
     }
 
     private void DestroyablePlant_OnDestroyableTakeDamage(object sender, System.EventArgs e) {
@@ -16,10 +16,10 @@ public class NewBehaviourScript : MonoBehaviour
     }
 
     private void OnDestroy() {
-        _destroyablePlant.OnDestroyableTakeDamage -= DestroyablePlant_OnDestroyableTakeDamage;
+        destroyablePlant.OnDestroyableTakeDamage -= DestroyablePlant_OnDestroyableTakeDamage;
     }
 
     private void ShowVFX() {
-        Instantiate(_deathVFX, _destroyablePlant.transform.position, Quaternion.identity);
+        Instantiate(deathVFX, destroyablePlant.transform.position, Quaternion.identity);
     }
 }

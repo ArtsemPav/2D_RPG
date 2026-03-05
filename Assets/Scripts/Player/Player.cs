@@ -10,18 +10,19 @@ public class Player : MonoBehaviour
     public event EventHandler OnPlayerDeath;
     public event EventHandler OnFlashBlink;
 
-    [SerializeField] private float _movingSpeed = 5f;
-    [SerializeField] private int _maxHealth = 20;
-    [SerializeField] private float _damageRecoveryTime = 0.5f;
+    [SerializeField] private float movingSpeed = 5f;
+    [SerializeField] private int maxHealth = 20;
+    [SerializeField] private float damageRecoveryTime = 0.5f;
 
     private Vector2 _inputVector;
     private Rigidbody2D _rb;
     private KnockBack _knockBack;
-    private float _minMovementSpeed = 0.1f;
+    private readonly float _minMovementSpeed = 0.1f;
     private bool _isRunning = false;
     private int _currentHealth;
     private bool _canTakedamage;
     private bool _isAlive;
+    private Camera _mainCamera;
 
     private void Awake()
     {
@@ -29,14 +30,19 @@ public class Player : MonoBehaviour
         DontDestroyOnLoad(this);
         _rb = GetComponent<Rigidbody2D>();
         _knockBack = GetComponent<KnockBack>();
+        _mainCamera = Camera.main;
     }
 
     private void Start()
     {
         GameInput.Instance.OnPlayerAttack += Player_OnPlayerAttack;
-        _currentHealth = _maxHealth;
+        _currentHealth = maxHealth;
         _canTakedamage = true;
         _isAlive = true;
+    }
+
+    private void Update() {
+        _inputVector = GameInput.Instance.GetMovementVector();
     }
 
     private void FixedUpdate()
@@ -50,7 +56,7 @@ public class Player : MonoBehaviour
     }
 
     public Vector3 GetPlayerScreenPosition() {
-        Vector3 playerScreenPos = Camera.main.WorldToScreenPoint(transform.position);
+        Vector3 playerScreenPos = _mainCamera.WorldToScreenPoint(transform.position);
         return playerScreenPos;
     }
 
@@ -85,16 +91,15 @@ public class Player : MonoBehaviour
 
     private void HandleMovement()
     {
-        Vector2 inputVector = GameInput.Instance.GetMovementVector();
-        _rb.MovePosition(_rb.position + inputVector * (_movingSpeed * Time.fixedDeltaTime));
-        if (Mathf.Abs(inputVector.x) > _minMovementSpeed || Mathf.Abs(inputVector.y) > _minMovementSpeed)
+        _rb.MovePosition(_rb.position + _inputVector * (movingSpeed * Time.fixedDeltaTime));
+        if (Mathf.Abs(_inputVector.x) > _minMovementSpeed || Mathf.Abs(_inputVector.y) > _minMovementSpeed)
             _isRunning = true;
         else
             _isRunning = false;
     }
 
     private IEnumerator RecoveryTime() {
-        yield return new WaitForSeconds(_damageRecoveryTime);
+        yield return new WaitForSeconds(damageRecoveryTime);
         _canTakedamage = true;
     }
     private void OnDestroy() {

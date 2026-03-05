@@ -2,11 +2,13 @@ using UnityEngine;
 
 public class PlayerVisual : MonoBehaviour
 {
+    private static readonly int Die = Animator.StringToHash(IsDie);
+    private static readonly int Running = Animator.StringToHash(IsRunning);
     private Animator _animator;
     private SpriteRenderer _spriteRenderer;
     private Flashblink _flashblink;
-    private const string IS_RUNNING = "IsRunning";
-    private const string IS_DIE = "IsDie";
+    private const string IsRunning = "IsRunning";
+    private const string IsDie = "IsDie";
 
     private void Awake()
     {
@@ -27,13 +29,13 @@ public class PlayerVisual : MonoBehaviour
     }
 
     private void Player_OnPlayerDeath(object sender, System.EventArgs e) {
-        _animator.SetBool(IS_DIE, true);
+        _animator.SetBool(Die, true);
         _flashblink.StopBlinking();
     }
 
     private void isPlayerRunnig()
     {
-        _animator.SetBool(IS_RUNNING, Player.Instance.IsRunning());
+        _animator.SetBool(Running, Player.Instance.IsRunning());
     }
 
     private void adjustPlayerFacingDirection()

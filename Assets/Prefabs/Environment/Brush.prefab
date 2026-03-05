@@ -195,5 +195,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b7473c76834f3984e80d495b0b22a806, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _destroyablePlant: {fileID: 2162972942722188171}
-  _deathVFX: {fileID: 103421706214361850, guid: 735e1cd5e4b6411488dd75ba7c7ad2f5, type: 3}
+  destroyablePlant: {fileID: 2162972942722188171}
+  deathVFX: {fileID: 103421706214361850, guid: 735e1cd5e4b6411488dd75ba7c7ad2f5, type: 3}
