@@ -13,6 +13,9 @@ public class Player : MonoBehaviour
     [SerializeField] private float movingSpeed = 5f;
     [SerializeField] private int maxHealth = 20;
     [SerializeField] private float damageRecoveryTime = 0.5f;
+    [SerializeField] private int dashSpeed = 4;
+    [SerializeField] private float dashTime = 1f;
+    [SerializeField] private TrailRenderer trailRenderer;
 
     private Vector2 _inputVector;
     private Rigidbody2D _rb;
@@ -22,6 +25,7 @@ public class Player : MonoBehaviour
     private int _currentHealth;
     private bool _canTakedamage;
     private bool _isAlive;
+    private bool _isDash;
     private Camera _mainCamera;
 
     private void Awake()
@@ -36,9 +40,11 @@ public class Player : MonoBehaviour
     private void Start()
     {
         GameInput.Instance.OnPlayerAttack += Player_OnPlayerAttack;
+        GameInput.Instance.OnPlayerDash += Player_OnPlayerDash;
         _currentHealth = maxHealth;
         _canTakedamage = true;
         _isAlive = true;
+        trailRenderer.emitting = false;
     }
 
     private void Update() {
@@ -81,12 +87,19 @@ public class Player : MonoBehaviour
             GameInput.Instance.DisableMovement();
             _knockBack.StopKnockBackMovement();
             OnPlayerDeath?.Invoke(this, EventArgs.Empty);
-            GameInput.Instance.OnPlayerAttack -= Player_OnPlayerAttack;
         }
     }
 
     private void Player_OnPlayerAttack(object sender, EventArgs e) {
         ActiveWeapon.Instance.GetActiveWeapon().Attack();
+    }
+
+    private void Player_OnPlayerDash(object sender, EventArgs e) {
+        if (!_isDash) Dash();
+    }
+
+    private void Dash() {
+        StartCoroutine(DashTime());
     }
 
     private void HandleMovement()
@@ -102,7 +115,20 @@ public class Player : MonoBehaviour
         yield return new WaitForSeconds(damageRecoveryTime);
         _canTakedamage = true;
     }
+
+    private IEnumerator DashTime() {
+        float _defaultMovingSpeed = movingSpeed;
+        _isDash = true;
+        trailRenderer.emitting = true;
+        movingSpeed *= dashSpeed;
+        yield return new WaitForSeconds(dashTime);
+        _isDash = false;
+        trailRenderer.emitting = false;
+        movingSpeed = _defaultMovingSpeed;
+    }
+
     private void OnDestroy() {
         GameInput.Instance.OnPlayerAttack -= Player_OnPlayerAttack;
+        GameInput.Instance.OnPlayerDash -= Player_OnPlayerDash;
     }
 }

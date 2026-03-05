@@ -47,6 +47,7 @@ public class EnemyHp : MonoBehaviour {
         if (_currentHealh <= 0) {
             enemyAI.SetDeathState();
             _boxCollider2D.enabled = false;
+            _polygonCollider2D.enabled = false;
             OnDeath?.Invoke(this, EventArgs.Empty);
         }
     }

@@ -51,6 +51,7 @@ public class SkeletonVisual : MonoBehaviour
     private void _enemyAI_OnEnemyAttack(object sender, EventArgs e) {
         _animator.SetTrigger(Attack);
     }
+
     private void OnDestroy() {
         enemyAI.OnEnemyAttack -= _enemyAI_OnEnemyAttack;
         enemyHp.OnTakeHit -= _enemyHp_OnTakeHit;

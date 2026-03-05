@@ -123,6 +123,7 @@ MonoBehaviour:
   enemyAI: {fileID: 8215090476973010494}
   enemyHp: {fileID: 1136909639770889951}
   shadow: {fileID: 4176221522456641457}
+  deathVFX: {fileID: 4906249270425781430, guid: 3192d6a4e22d8a342b577e916fc7fab3, type: 3}
 --- !u!1 &3983293255413057932
 GameObject:
   m_ObjectHideFlags: 0
