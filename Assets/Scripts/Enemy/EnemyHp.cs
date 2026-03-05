@@ -9,6 +9,7 @@ public class EnemyHp : MonoBehaviour {
 
     private PolygonCollider2D _polygonCollider2D;
     private BoxCollider2D _boxCollider2D;
+    private CapsuleCollider2D _capsuleCollider2D;
 
     public event EventHandler OnTakeHit;
     public event EventHandler OnDeath;
@@ -16,6 +17,7 @@ public class EnemyHp : MonoBehaviour {
     private void Awake() {
         _polygonCollider2D = GetComponent<PolygonCollider2D>();
         _boxCollider2D = GetComponent<BoxCollider2D>();
+        _capsuleCollider2D = GetComponent<CapsuleCollider2D>();
     }
 
     private void Start() {
@@ -48,6 +50,7 @@ public class EnemyHp : MonoBehaviour {
             enemyAI.SetDeathState();
             _boxCollider2D.enabled = false;
             _polygonCollider2D.enabled = false;
+            _capsuleCollider2D.enabled = false;
             OnDeath?.Invoke(this, EventArgs.Empty);
         }
     }
