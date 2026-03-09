@@ -14,6 +14,10 @@ public class NavMeshSurfaceManagment : MonoBehaviour
         _navMeshSurface.hideEditorLogs = true;
     }
 
+    private void Start() {
+        RebakeNavmeshSurface();
+    }
+
     public void RebakeNavmeshSurface() {
         _navMeshSurface.BuildNavMesh();
     }

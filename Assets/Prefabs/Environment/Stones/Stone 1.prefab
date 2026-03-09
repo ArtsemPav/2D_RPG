@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 1919928334878330790}
   - component: {fileID: 2162972942722188171}
   m_Layer: 0
-  m_Name: Brush
+  m_Name: Stone 1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -43,6 +43,7 @@ CapsuleCollider2D:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 4919442312863095797}
   m_Enabled: 1
+  serializedVersion: 3
   m_Density: 1
   m_Material: {fileID: 0}
   m_IncludeLayers:
@@ -66,9 +67,10 @@ CapsuleCollider2D:
     m_Bits: 4294967295
   m_IsTrigger: 0
   m_UsedByEffector: 0
-  m_UsedByComposite: 0
-  m_Offset: {x: 0, y: 0.31}
-  m_Size: {x: 0.82340556, y: 0.82340556}
+  m_CompositeOperation: 0
+  m_CompositeOrder: 0
+  m_Offset: {x: 0, y: 0}
+  m_Size: {x: 1.84, y: 1.535716}
   m_Direction: 1
 --- !u!114 &1919928334878330790
 MonoBehaviour:
@@ -82,8 +84,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7fa0352a4d56abd42ad2fc69deb72448, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_Size: {x: 0.8, y: 0.7, z: 4}
-  m_Center: {x: 0, y: 0.32, z: 0}
+  m_Size: {x: 1.65, y: 0.78, z: 4}
+  m_Center: {x: 0, y: -0.38, z: 0}
   m_Area: 1
   m_AffectedAgents: ffffffff
 --- !u!114 &2162972942722188171
@@ -110,7 +112,7 @@ GameObject:
   - component: {fileID: 973247080126260339}
   - component: {fileID: 710592319028143512}
   m_Layer: 0
-  m_Name: BrushVisual
+  m_Name: StoneVisual
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -133,6 +135,7 @@ Transform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!212 &973247080126260339
 SpriteRenderer:
+  serializedVersion: 2
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
@@ -148,6 +151,11 @@ SpriteRenderer:
   m_ReflectionProbeUsage: 1
   m_RayTracingMode: 0
   m_RayTraceProcedural: 0
+  m_RayTracingAccelStructBuildFlagsOverride: 0
+  m_RayTracingAccelStructBuildFlags: 1
+  m_SmallMeshCulling: 1
+  m_ForceMeshLod: -1
+  m_MeshLodSelectionBias: 0
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
@@ -169,10 +177,12 @@ SpriteRenderer:
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
+  m_GlobalIlluminationMeshLod: 0
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: -1968683121, guid: 47697864b5a32dd41a1f2258bdeca4fc, type: 3}
+  m_MaskInteraction: 0
+  m_Sprite: {fileID: -1641630630, guid: 47697864b5a32dd41a1f2258bdeca4fc, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -181,7 +191,6 @@ SpriteRenderer:
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
   m_WasSpriteAssigned: 1
-  m_MaskInteraction: 0
   m_SpriteSortPoint: 0
 --- !u!114 &710592319028143512
 MonoBehaviour:
@@ -196,4 +205,4 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   destroyablePlant: {fileID: 2162972942722188171}
-  deathVFX: {fileID: 103421706214361850, guid: 735e1cd5e4b6411488dd75ba7c7ad2f5, type: 3}
+  deathVFX: {fileID: 5550881303797806733, guid: 5129f88307a5aca458c6a9f7dd554bd2, type: 3}
